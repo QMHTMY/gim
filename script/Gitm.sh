@@ -83,7 +83,7 @@ if [[ "$1" == "push" ]]; then
     elif [[ "$2" == "all" ]]; then
         platforms=`git remote -v | grep "push" | awk '{print $1}'`
         for platform in "${platforms}"; do
-            pushTo platform
+            pushTo $platform
         done
     else
         pushTo origin
