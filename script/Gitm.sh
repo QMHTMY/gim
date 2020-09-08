@@ -57,10 +57,11 @@ function pushTo() {
     fi
 
     echo "$Tux 推送当前分支代码到$platformtitle $county$symbol"
+
     stt=`date +%s`
     git push $platform master
     edt=`date +%s`
-    echo "$platform"
+
     echo "耗时: $(($edt - $stt))s"
     echo ""
 }
