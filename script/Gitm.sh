@@ -80,14 +80,13 @@ if [[ "$1" == "push" ]]; then
         pushTo codeup
     elif [[ "$2" == "github" ]]; then
         pushTo github
-    elif [[ "$2" == "" ]] || [[ "$2" == "all" ]]; then
-        pushTo gitee
-        pushTo coding
-        pushTo codeup
-        pushTo github
+    elif [[ "$2" == "all" ]]; then
+        platforms=`git remote -v | grep "push" | awk '{print $1}'`
+        for platform in "${platforms}"; do
+            pushTo platform
+        done
     else
-        help
-        exit 1
+        pushTo origin
     fi
 else
     help
