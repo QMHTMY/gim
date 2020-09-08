@@ -26,12 +26,10 @@ help() {
 }
 
 
-
 #吉祥物
 Tux="🐧🐧🐧"   #Linux吉祥物
 China="🐉"     #中国龙🐲
 America="🦅"   #美国鹰
-
 
 #推送函数
 function push2platform() {
@@ -48,6 +46,11 @@ function push2platform() {
         symbol="$China"
         platform="$1"
         platforms="腾讯Coding"
+    elif [[ "$1" == "codeup" ]]; then
+        county="中国"
+        symbol="$China"
+        platform="$1"
+        platforms="阿里Codeup"
     else
         county="美国"
         symbol="$America"
@@ -64,6 +67,7 @@ function push2platform() {
     echo ""
 }
 
-push2platform  gitee
+push2platform gitee
 push2platform coding
+push2platform codeup
 push2platform github
