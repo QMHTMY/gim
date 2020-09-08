@@ -54,7 +54,7 @@ function push2platform() {
 
     echo "$Tux. 推送当前分支代码到$platform [$county]$symbol"
     stt=`date +%s`
-    #git push $platform master
+    git push $platform master
     echo "$platform"
     edt=`date +%s`
     echo "耗时: $(($edt - $stt))s"
