@@ -71,6 +71,7 @@ function pushTo() {
     echo ""
 }
 
+#脚本执行入口
 if [[ $# == 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
     help
     exit 1
