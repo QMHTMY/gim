@@ -21,22 +21,20 @@
 ###     Gitm push coding
 ###     Gitm push github
 ###    
-help() {
-    sed -rn 's/^### ?//;T;p' "$0"
-}
-
 
 #吉祥物
-Tux="🐧🐧🐧"   #Linux吉祥物
+Tux="🐧🐧🐧."  #Linux吉祥物
 China="🐉"     #中国龙🐲
 America="🦅"   #美国鹰
 
+#帮助函数
+function help() {
+    sed -rn 's/^### ?//;T;p' "$0"
+}
+
 #推送函数
 function push2platform() {
-    if [[ $# == 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]];then
-        help
-        exit 1
-    elif [[ "$1" == "gitee" ]]; then
+    if [[ "$1" == "gitee" ]]; then
         county="中国"
         symbol="$China"
         platform="$1"
@@ -51,14 +49,14 @@ function push2platform() {
         symbol="$China"
         platform="$1"
         platforms="阿里Codeup"
-    else
+    elif [[ "$1" == "github" ]]; then
         county="美国"
         symbol="$America"
         platform="github"
         platforms="微软Github"
     fi
 
-    echo "$Tux. 推送当前分支代码到$platforms $county$symbol"
+    echo "$Tux 推送当前分支代码到$platforms $county$symbol"
     stt=`date +%s`
     git push $platform master
     edt=`date +%s`
@@ -67,7 +65,20 @@ function push2platform() {
     echo ""
 }
 
-push2platform gitee
-push2platform coding
-push2platform codeup
-push2platform github
+if [[ $# == 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]];then
+    help
+    exit 1
+elif [[ "$1" == "gitee" ]]; then
+    push2platform gitee
+elif [[ "$1" == "coding" ]]; then
+    push2platform coding
+elif [[ "$1" == "codeup" ]]; then
+    push2platform codeup
+elif [[ "$1" == "github" ]]; then
+    push2platform github
+else
+    push2platform gitee
+    push2platform coding
+    push2platform codeup
+    push2platform github
+fi
