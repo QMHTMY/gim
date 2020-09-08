@@ -41,21 +41,23 @@ function push2platform() {
     elif [[ "$1" == "gitee" ]]; then
         county="中国"
         symbol="$China"
-        platform="码云Gitee"
+        platform="$1"
+        platforms="码云Gitee"
     elif [[ "$1" == "coding" ]]; then
         county="中国"
         symbol="$China"
-        platform="腾讯Coding"
+        platform="$1"
+        platforms="腾讯Coding"
     else
         county="美国"
         symbol="$America"
-        platform="微软Github"
+        platform="github"
+        platforms="微软Github"
     fi
 
-    echo "$Tux. 推送当前分支代码到$platform [$county]$symbol"
+    echo "$Tux. 推送当前分支代码到$platforms [$county]$symbol"
     stt=`date +%s`
     git push $platform master
-    echo "$platform"
     edt=`date +%s`
     echo "耗时: $(($edt - $stt))s"
     echo ""
