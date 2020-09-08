@@ -11,23 +11,26 @@
 ###
 ### Options:
 ###     <command>   command to execute.
-###     -h,--help   Show help message.
+###     -h          Show help message for push.
+###     --help      Show help message of git.
 ###
-### Example:
+### Examples:
 ###     Gitm -h
 ###     Gitm --help
-###     Gitm push         #push to <all> platform you've set. (default)
-###     Gitm push origin  #push to <origin> platforms you've set.
-###     Gitm push gitee   #push to <a single> platform from platforms you've set.
+###     Gitm add file     
+###     Gitm push         #push to <all> platforms you've set. (default)
+###     Gitm push origin  #push to <origin> platform you've set.
+###     Gitm push gitee   #push to <a single> platform.
 ###     Gitm push coding
 ###     Gitm push codeup
 ###     Gitm push github
+###     Gitm push codehup
 ###    
 
 #吉祥物
-Tux="🐧🐧🐧."  #Linux吉祥物
-China="🐉"     #中国龙🐲
-America="🦅"   #美国鹰
+Tux="🐧🐧🐧.."  #Linux吉祥物
+China="🐉"      #中国龙🐲
+America="🦅"    #美国鹰
 
 #帮助函数
 function help() {
@@ -36,40 +39,28 @@ function help() {
 
 #推送函数
 function pushTo() {
-    if [[ "$1" == "gitee" ]]; then
-        county="中国"
-        symbol="$China"
-        platform="$1"
-        platformtitle="码云Gitee "
-    elif [[ "$1" == "coding" ]]; then
-        county="中国"
-        symbol="$China"
-        platform="$1"
-        platformtitle="腾讯Coding"
-    elif [[ "$1" == "codeup" ]]; then
-        county="中国"
-        symbol="$China"
-        platform="$1"
-        platformtitle="阿里Codeup"
-    elif [[ "$1" == "codehub" ]]; then
-        county="中国"
-        symbol="$China"
-        platform="$1"
-        platformtitle="华为Codehub"
-    elif [[ "$1" == "github" ]]; then
-        county="美国"
+    symbol="$China"
+    country="中国"
+    platform="$1"
+    if [[ "$platform" == "gitee" ]]; then
+        title="码云Gitee "
+    elif [[ "$platform" == "coding" ]]; then
+        title="腾讯Coding"
+    elif [[ "$platform" == "codeup" ]]; then
+        title="阿里Codeup"
+    elif [[ "$platform" == "codehub" ]]; then
+        title="华为Codehub"
+    elif [[ "$platform" == "github" ]]; then
+        country="美国"
         symbol="$America"
-        platform="$1"
-        platformtitle="微软Github"
-    elif [[ "$1" == "origin" ]]; then
-        stt=`date +%s`
-        git push origin master
-        edt=`date +%s`
-        exit 1
+        title="微软Github"
+    elif [[ "$platform" == "origin" ]]; then
+        country="美国"
+        symbol="$America"
+        title="Origin"
     fi
 
-
-    echo "$Tux 推送当前代码分支到$platformtitle $county$symbol"
+    echo "$Tux 推送当前代码分支到$title $country$symbol"
     stt=`date +%s`
     git push $platform master
     edt=`date +%s`
@@ -78,12 +69,11 @@ function pushTo() {
 }
 
 #脚本执行入口
-if [[ $# == 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+if [[ $# == 0 ]] || [[ "$1" == "--help" ]]; then
+    git $@
+elif [[ "$1" == "-h" ]]; then
     help
-    exit 1
-fi
-
-if [[ "$1" == "push" ]]; then
+elif [[ "$1" == "push" ]]; then
     if [[ "$2" == "origin" ]]; then
         pushTo origin
     elif [[ "$2" == "gitee" ]]; then
@@ -97,14 +87,14 @@ if [[ "$1" == "push" ]]; then
     elif [[ "$2" == "github" ]]; then
         pushTo github
     elif [[ "$2" == "" ]]; then
-        platforms=`git remote -v | grep "push" | awk '{print $1}'`
+        platforms=`git remote`
         platforms=`echo ${platforms/origin/}`
-        platforms=`echo ${platforms} | tr ' ' ' '`
         for platform in ${platforms}; do
             pushTo ${platform}
         done
+    else
+        git $@
     fi
 else
-    help
-    exit 1
+    git $@
 fi
