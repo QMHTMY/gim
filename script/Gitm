@@ -1,4 +1,5 @@
 #!/bin/bash
+#一键推送代码到多个托管平台
 
 echo "🐧🐧🐧. 推送当前分支到码云Gitee  中国🐉"
 stt=`date +%s`
