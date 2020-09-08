@@ -54,7 +54,10 @@ function pushTo() {
         symbol="$America"
         platform="github"
         platformtitle="微软Github"
-    else
+    elif [[ "$1" == "origin" ]]; then
+        stt=`date +%s`
+        git push origin master
+        edt=`date +%s`
         exit 1
     fi
 
@@ -63,8 +66,8 @@ function pushTo() {
     stt=`date +%s`
     git push $platform master
     edt=`date +%s`
-
     echo "耗时: $(($edt - $stt))s"
+
     echo ""
 }
 
@@ -84,8 +87,10 @@ if [[ "$1" == "push" ]]; then
         pushTo github
     elif [[ "$2" == "all" ]]; then
         platforms=`git remote -v | grep "push" | awk '{print $1}'`
-        for platform in "${platforms}"; do
-            pushTo $platform
+        platforms=`echo ${platforms/origin/}`
+        platforms=`echo ${platforms} | tr ' ' ' '`
+        for platform in ${platforms}; do
+            pushTo ${platform}
         done
     else
         pushTo origin
