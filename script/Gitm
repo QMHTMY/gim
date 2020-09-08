@@ -1,20 +1,20 @@
 #!/bin/bash
 
-echo "🐧🐧🐧. 推送当前分支代码到Gitee  [中国]🐼"
+echo "🐧🐧🐧. 推送当前分支代码到Gitee  中国🐉"
 stt=`date +%s`
 git push gitee master
 edt=`date +%s`
 echo "耗时: $(($edt - $stt))s"
 echo ""
 
-echo "🐧🐧🐧. 推送当前分支代码到Coding [中国]🐼"
+echo "🐧🐧🐧. 推送当前分支代码到Coding 中国🐉"
 stt=`date +%s`
 git push coding master
 edt=`date +%s`
 echo "耗时: $(($edt - $stt))s"
 echo ""
 
-echo "🐧🐧🐧. 推送当前分支代码到Github [美国]🦅"
+echo "🐧🐧🐧. 推送当前分支代码到Github 美国🦅"
 stt=`date +%s`
 git push github master
 edt=`date +%s`
