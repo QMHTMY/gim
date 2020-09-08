@@ -1,10 +1,10 @@
 #!/bin/bash
-# 2020-09-08
+# 2020-09-07
 # 一次推送代码到多个托管平台
 
 ### Description:
 ###     Gitm — Push code to multiple Opensource-Platforms
-###         Author: Shieber <QMH_XB_FLTMY@yahoo.com>
+###          Author: Shieber <QMH_XB_FLTMY@yahoo.com>
 ###
 ### Usage:
 ###     Gitm <command>
@@ -16,9 +16,11 @@
 ### Example:
 ###     Gitm -h
 ###     Gitm --help
-###     Gitm push         #push to all platforms you've set. (default)
-###     Gitm push gitee   #push to a single platform from platforms you've set.
+###     Gitm push         #push to <all> platform you've set. (default)
+###     Gitm push origin  #push to <origin> platforms you've set.
+###     Gitm push gitee   #push to <a single> platform from platforms you've set.
 ###     Gitm push coding
+###     Gitm push codeup
 ###     Gitm push github
 ###    
 
@@ -49,10 +51,15 @@ function pushTo() {
         symbol="$China"
         platform="$1"
         platformtitle="阿里Codeup"
+    elif [[ "$1" == "codehub" ]]; then
+        county="中国"
+        symbol="$China"
+        platform="$1"
+        platformtitle="华为Codehub"
     elif [[ "$1" == "github" ]]; then
         county="美国"
         symbol="$America"
-        platform="github"
+        platform="$1"
         platformtitle="微软Github"
     elif [[ "$1" == "origin" ]]; then
         stt=`date +%s`
@@ -61,13 +68,12 @@ function pushTo() {
         exit 1
     fi
 
-    echo "$Tux 推送当前分支代码到$platformtitle $county$symbol"
 
+    echo "$Tux 推送当前代码分支到$platformtitle $county$symbol"
     stt=`date +%s`
     git push $platform master
     edt=`date +%s`
     echo "耗时: $(($edt - $stt))s"
-
     echo ""
 }
 
@@ -78,23 +84,25 @@ if [[ $# == 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
 fi
 
 if [[ "$1" == "push" ]]; then
-    if [[ "$2" == "gitee" ]]; then
+    if [[ "$2" == "origin" ]]; then
+        pushTo origin
+    elif [[ "$2" == "gitee" ]]; then
         pushTo gitee
     elif [[ "$2" == "coding" ]]; then
         pushTo coding
     elif [[ "$2" == "codeup" ]]; then
         pushTo codeup
+    elif [[ "$2" == "codehub" ]]; then
+        pushTo codehub
     elif [[ "$2" == "github" ]]; then
         pushTo github
-    elif [[ "$2" == "all" ]]; then
+    elif [[ "$2" == "" ]]; then
         platforms=`git remote -v | grep "push" | awk '{print $1}'`
         platforms=`echo ${platforms/origin/}`
         platforms=`echo ${platforms} | tr ' ' ' '`
         for platform in ${platforms}; do
             pushTo ${platform}
         done
-    else
-        pushTo origin
     fi
 else
     help
