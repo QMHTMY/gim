@@ -42,7 +42,7 @@ function push2platform() {
         county="中国"
         symbol="$China"
         platform="$1"
-        platforms="码云Gitee"
+        platforms="码云Gitee "
     elif [[ "$1" == "coding" ]]; then
         county="中国"
         symbol="$China"
@@ -55,10 +55,11 @@ function push2platform() {
         platforms="微软Github"
     fi
 
-    echo "$Tux. 推送当前分支代码到$platforms [$county]$symbol"
+    echo "$Tux. 推送当前分支代码到$platforms $county$symbol"
     stt=`date +%s`
-    git push $platform master
+    #git push $platform master
     edt=`date +%s`
+    echo "$platform"
     echo "耗时: $(($edt - $stt))s"
     echo ""
 }
