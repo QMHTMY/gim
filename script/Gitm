@@ -30,7 +30,7 @@
 #吉祥物
 Tux="🐧🐧🐧.."  #Linux吉祥物
 China="🐉"      #中国龙🐲
-America="🦅"    #美国鹰
+America="🦅"    #美国鹰🦅
 
 #帮助函数
 function help() {
@@ -42,7 +42,8 @@ function pushTo() {
     symbol="$China"
     country="中国"
     platform="$1"
-    if [[ "$platform" == "gitee" ]]; then
+
+    if   [[ "$platform" == "gitee" ]]; then
         title="码云Gitee "
     elif [[ "$platform" == "coding" ]]; then
         title="腾讯Coding"
@@ -69,12 +70,12 @@ function pushTo() {
 }
 
 #脚本执行入口
-if [[ $# == 0 ]] || [[ "$1" == "--help" ]]; then
+if   [[ $# == 0 ]] || [[ "$1" == "--help" ]]; then
     git $@
 elif [[ "$1" == "-h" ]]; then
     help
 elif [[ "$1" == "push" ]]; then
-    if [[ "$2" == "origin" ]]; then
+    if   [[ "$2" == "origin" ]]; then
         pushTo origin
     elif [[ "$2" == "gitee" ]]; then
         pushTo gitee
