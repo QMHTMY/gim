@@ -54,6 +54,8 @@ function pushTo() {
         symbol="$America"
         platform="github"
         platformtitle="微软Github"
+    else
+        exit 1
     fi
 
     echo "$Tux 推送当前分支代码到$platformtitle $county$symbol"
