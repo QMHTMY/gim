@@ -33,30 +33,30 @@ function help() {
 }
 
 #推送函数
-function push2platform() {
+function pushTo() {
     if [[ "$1" == "gitee" ]]; then
         county="中国"
         symbol="$China"
         platform="$1"
-        platforms="码云Gitee "
+        platformtitle="码云Gitee "
     elif [[ "$1" == "coding" ]]; then
         county="中国"
         symbol="$China"
         platform="$1"
-        platforms="腾讯Coding"
+        platformtitle="腾讯Coding"
     elif [[ "$1" == "codeup" ]]; then
         county="中国"
         symbol="$China"
         platform="$1"
-        platforms="阿里Codeup"
+        platformtitle="阿里Codeup"
     elif [[ "$1" == "github" ]]; then
         county="美国"
         symbol="$America"
         platform="github"
-        platforms="微软Github"
+        platformtitle="微软Github"
     fi
 
-    echo "$Tux 推送当前分支代码到$platforms $county$symbol"
+    echo "$Tux 推送当前分支代码到$platformtitle $county$symbol"
     stt=`date +%s`
     git push $platform master
     edt=`date +%s`
@@ -65,20 +65,30 @@ function push2platform() {
     echo ""
 }
 
-if [[ $# == 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]];then
+if [[ $# == 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
     help
     exit 1
-elif [[ "$1" == "gitee" ]]; then
-    push2platform gitee
-elif [[ "$1" == "coding" ]]; then
-    push2platform coding
-elif [[ "$1" == "codeup" ]]; then
-    push2platform codeup
-elif [[ "$1" == "github" ]]; then
-    push2platform github
+fi
+
+if [[ "$1" == "push" ]]; then
+    if [[ "$2" == "gitee" ]]; then
+        pushTo gitee
+    elif [[ "$2" == "coding" ]]; then
+        pushTo coding
+    elif [[ "$2" == "codeup" ]]; then
+        pushTo codeup
+    elif [[ "$2" == "github" ]]; then
+        pushTo github
+    elif [[ "$2" == "" ]] || [[ "$2" == "all" ]]; then
+        pushTo gitee
+        pushTo coding
+        pushTo codeup
+        pushTo github
+    else
+        help
+        exit 1
+    fi
 else
-    push2platform gitee
-    push2platform coding
-    push2platform codeup
-    push2platform github
+    help
+    exit 1
 fi
