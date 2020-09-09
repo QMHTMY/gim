@@ -52,6 +52,10 @@ function pushTo() {
         title="阿里Codeup"
     elif [[ "$platform" == "codehub" ]]; then
         title="华为Codehub"
+    elif [[ "$platform" == "origin"  ]]; then
+        country="美国"
+        symbol="$America"
+        title="微软Github"
     elif [[ "$platform" == "github"  ]]; then
         country="美国"
         symbol="$America"
@@ -75,20 +79,19 @@ elif [[ "$1" == "push" ]]; then
     if   [[ "$2" == "" ]]; then
         git push
     elif [[ "$2" == "gitee"   ]]; then
-        pushTo gitee
+        pushTo $@
     elif [[ "$2" == "coding"  ]]; then
-        pushTo coding
+        pushTo $@
     elif [[ "$2" == "codeup"  ]]; then
-        pushTo codeup
+        pushTo $@
     elif [[ "$2" == "codehub" ]]; then
-        pushTo codehub
+        pushTo $@
     elif [[ "$2" == "github"  ]]; then
-        pushTo github
+        pushTo $@
     elif [[ "$2" == "all"     ]]; then
         platforms=`git remote`
-        #platforms=`echo ${platforms/origin/}`
         for platform in ${platforms}; do
-            pushTo ${platform}
+            pushTo ${platform} $3
         done
     else
         git $@
