@@ -29,6 +29,7 @@
 
 #吉祥物
 Tux="🐧🐧🐧.."                 #Linux吉祥物
+Dove="🕊️"                      #和平鸽🕊️
 China="🐉"                     #中国龙🐲
 America="🦅"                   #美国鹰🦅
 Pretitle="推送当前代码分支到"
@@ -53,9 +54,9 @@ function pushTo() {
     elif [[ "$platform" == "codehub" ]]; then
         title="华为Codehub"
     elif [[ "$platform" == "origin"  ]]; then
-        country="美国"
-        symbol="$America"
-        title="微软Github"
+        country=""
+        symbol="$Dove"
+        title="Origin"
     elif [[ "$platform" == "github"  ]]; then
         country="美国"
         symbol="$America"
@@ -79,15 +80,15 @@ elif [[ "$1" == "push" ]]; then
     if   [[ "$2" == "" ]]; then
         git push
     elif [[ "$2" == "gitee"   ]]; then
-        pushTo $@
+        pushTo $2 $3
     elif [[ "$2" == "coding"  ]]; then
-        pushTo $@
+        pushTo $2 $3
     elif [[ "$2" == "codeup"  ]]; then
-        pushTo $@
+        pushTo $2 $3
     elif [[ "$2" == "codehub" ]]; then
-        pushTo $@
+        pushTo $2 $3
     elif [[ "$2" == "github"  ]]; then
-        pushTo $@
+        pushTo $2 $3
     elif [[ "$2" == "all"     ]]; then
         platforms=`git remote`
         for platform in ${platforms}; do
