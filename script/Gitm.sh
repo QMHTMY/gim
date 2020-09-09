@@ -60,7 +60,7 @@ function pushTo() {
 
     echo "$Tux $Pretitle$title $country$symbol"
     stt=`date +%s`
-    git push $platform #master
+    git push $@
     edt=`date +%s`
     echo "耗时: $(($edt - $stt))s"
     echo ""
