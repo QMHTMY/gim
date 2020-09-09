@@ -28,9 +28,10 @@
 ###    
 
 #吉祥物
-Tux="🐧🐧🐧.."  #Linux吉祥物
-China="🐉"      #中国龙🐲
-America="🦅"    #美国鹰🦅
+Tux="🐧🐧🐧.."                 #Linux吉祥物
+China="🐉"                     #中国龙🐲
+America="🦅"                   #美国鹰🦅
+Pretitle="推送当前代码分支到"
 
 #帮助函数
 function help() {
@@ -43,49 +44,49 @@ function pushTo() {
     country="中国"
     platform="$1"
 
-    if   [[ "$platform" == "gitee" ]]; then
+    if   [[ "$platform" == "gitee"   ]]; then
         title="码云Gitee "
-    elif [[ "$platform" == "coding" ]]; then
+    elif [[ "$platform" == "coding"  ]]; then
         title="腾讯Coding"
-    elif [[ "$platform" == "codeup" ]]; then
+    elif [[ "$platform" == "codeup"  ]]; then
         title="阿里Codeup"
     elif [[ "$platform" == "codehub" ]]; then
         title="华为Codehub"
-    elif [[ "$platform" == "github" ]]; then
+    elif [[ "$platform" == "github"  ]]; then
         country="美国"
         symbol="$America"
         title="微软Github"
     fi
 
-    echo "$Tux 推送当前代码分支到$title $country$symbol"
+    echo "$Tux $Pretitle$title $country$symbol"
     stt=`date +%s`
-    git push $platform master
+    git push $platform #master
     edt=`date +%s`
     echo "耗时: $(($edt - $stt))s"
     echo ""
 }
 
 #脚本执行入口
-if   [[ $# == 0 ]] || [[ "$1" == "--help" ]]; then
+if   [[ $# == 0 ]]  || [[ "$1" == "--help" ]]; then
     git $@
-elif [[ "$1" == "-h" ]]; then
+elif [[ "$1" == "-h"   ]]; then
     help
 elif [[ "$1" == "push" ]]; then
     if   [[ "$2" == "" ]]; then
         git push
-    elif [[ "$2" == "gitee" ]]; then
+    elif [[ "$2" == "gitee"   ]]; then
         pushTo gitee
-    elif [[ "$2" == "coding" ]]; then
+    elif [[ "$2" == "coding"  ]]; then
         pushTo coding
-    elif [[ "$2" == "codeup" ]]; then
+    elif [[ "$2" == "codeup"  ]]; then
         pushTo codeup
     elif [[ "$2" == "codehub" ]]; then
         pushTo codehub
-    elif [[ "$2" == "github" ]]; then
+    elif [[ "$2" == "github"  ]]; then
         pushTo github
-    elif [[ "$2" == "all" ]]; then
+    elif [[ "$2" == "all"     ]]; then
         platforms=`git remote`
-        platforms=`echo ${platforms/origin/}`
+        #platforms=`echo ${platforms/origin/}`
         for platform in ${platforms}; do
             pushTo ${platform}
         done
