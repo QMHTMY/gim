@@ -18,8 +18,8 @@
 ###     Gitm -h
 ###     Gitm --help
 ###     Gitm add file     
-###     Gitm push         #push to <all> platforms you've set. (default)
-###     Gitm push origin  #push to <origin> platform you've set.
+###     Gitm push         #push to <origin> platform you've set. (default)
+###     Gitm push all     #push to <all> platforms you've set.
 ###     Gitm push gitee   #push to <a single> platform.
 ###     Gitm push coding
 ###     Gitm push codeup
@@ -55,10 +55,6 @@ function pushTo() {
         country="美国"
         symbol="$America"
         title="微软Github"
-    elif [[ "$platform" == "origin" ]]; then
-        country="美国"
-        symbol="$America"
-        title="Origin"
     fi
 
     echo "$Tux 推送当前代码分支到$title $country$symbol"
@@ -75,8 +71,8 @@ if   [[ $# == 0 ]] || [[ "$1" == "--help" ]]; then
 elif [[ "$1" == "-h" ]]; then
     help
 elif [[ "$1" == "push" ]]; then
-    if   [[ "$2" == "origin" ]]; then
-        pushTo origin
+    if   [[ "$2" == "" ]]; then
+        git push
     elif [[ "$2" == "gitee" ]]; then
         pushTo gitee
     elif [[ "$2" == "coding" ]]; then
@@ -87,7 +83,7 @@ elif [[ "$1" == "push" ]]; then
         pushTo codehub
     elif [[ "$2" == "github" ]]; then
         pushTo github
-    elif [[ "$2" == "" ]]; then
+    elif [[ "$2" == "all" ]]; then
         platforms=`git remote`
         platforms=`echo ${platforms/origin/}`
         for platform in ${platforms}; do
