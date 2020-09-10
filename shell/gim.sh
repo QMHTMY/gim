@@ -46,11 +46,11 @@ function pushTo() {
     platform="$1"
 
     if   [[ "$platform" == "gitee"   ]]; then
-        title="码云Gitee "
+        title="码云Gitee  "
     elif [[ "$platform" == "coding"  ]]; then
-        title="腾讯Coding"
+        title="腾讯Coding "
     elif [[ "$platform" == "codeup"  ]]; then
-        title="阿里Codeup"
+        title="阿里Codeup "
     elif [[ "$platform" == "codehub" ]]; then
         title="华为Codehub"
     elif [[ "$platform" == "origin"  ]]; then
@@ -60,7 +60,7 @@ function pushTo() {
     elif [[ "$platform" == "github"  ]]; then
         country="美国"
         symbol="$America"
-        title="微软Github"
+        title="微软Github "
     fi
 
     echo "$Tux $Pretitle$title $country$symbol"
