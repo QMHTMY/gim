@@ -2,30 +2,33 @@
 # 2020-09-07
 # 一次推送代码到多个托管平台
 
-### Description:
-###     gim — Push code to multiple Opensource-Platforms
-###          Author: Shieber <QMH_XB_FLTMY@yahoo.com>
+### 简介:
+###     gim — 推送代码到多个托管平台
 ###
-### Usage:
-###     gim <command>
+### 作者: Shieber <QMH_XB_FLTMY@yahoo.com>
 ###
-### Options:
-###     <command>   command to execute.
-###     -h          Show help message for push.
-###     --help      Show help message of git.
+### 使用:
+###     gim <command> 
+###     gim <command> <platform> <branch>
 ###
-### Examples:
+### 选项:
+###     <command>   命令
+###     <platform>  平台
+###     <branch>    分支
+###     -h          显示push命令帮助信息
+###     --help      显示帮助信息
+###
+### 用例:
 ###     gim -h
 ###     gim --help
 ###     gim add file     
-###     gim push         #push to <origin> platform you've set. (default)
-###     gim push all     #push to <all> platforms you've set.
-###     gim push gitee   #push to <a single> platform.
-###     gim push coding
-###     gim push codeup
-###     gim push github
-###     gim push codehup
-###    
+###     gim push                 # 推送到origin。(默认)
+###     gim push all  master     # 推送到所有平台。
+###     gim push gitee master    # 推送到单个平台。
+###     gim push github main     # 2020.10.1, github用main替代master
+###     gim push codeup master   # 其他支持的代码托管平台
+###     gim push coding dev      # gitee  -- 码云  codeup  -- 阿里
+###     gim push codehup beta    # coding -- 腾讯  codehub -- 华为
 
 #吉祥物
 Tux="🐧🐧🐧.."                 #Linux吉祥物
