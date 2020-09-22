@@ -3,11 +3,11 @@
 # 一次推送代码到多个托管平台
 
 ### Description:
-###     Gitm — Push code to multiple Opensource-Platforms
+###     gim — Push code to multiple Opensource-Platforms
 ###          Author: Shieber <QMH_XB_FLTMY@yahoo.com>
 ###
 ### Usage:
-###     Gitm <command>
+###     gim <command>
 ###
 ### Options:
 ###     <command>   command to execute.
@@ -15,16 +15,16 @@
 ###     --help      Show help message of git.
 ###
 ### Examples:
-###     Gitm -h
-###     Gitm --help
-###     Gitm add file     
-###     Gitm push         #push to <origin> platform you've set. (default)
-###     Gitm push all     #push to <all> platforms you've set.
-###     Gitm push gitee   #push to <a single> platform.
-###     Gitm push coding
-###     Gitm push codeup
-###     Gitm push github
-###     Gitm push codehup
+###     gim -h
+###     gim --help
+###     gim add file     
+###     gim push         #push to <origin> platform you've set. (default)
+###     gim push all     #push to <all> platforms you've set.
+###     gim push gitee   #push to <a single> platform.
+###     gim push coding
+###     gim push codeup
+###     gim push github
+###     gim push codehup
 ###    
 
 #吉祥物
