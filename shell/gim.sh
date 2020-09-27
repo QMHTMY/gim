@@ -9,33 +9,33 @@
 ###
 ### 使用:
 ###     gim <command> 
-###     gim <command> <platform> <branch>
+###     gim push [platform] [branch]
 ###
 ### 选项:
 ###     <command>   命令
-###     <platform>  平台
-###     <branch>    分支
-###     -h          显示push命令帮助信息
-###     --help      显示帮助信息
+###     [platform]  平台
+###     [branch]    分支
+###     -h          显示push帮助信息
+###     --help      显示所有帮助信息
 ###
 ### 用例:
 ###     gim -h
 ###     gim --help
-###     gim add file     
-###     gim push                 # 推送到origin。(默认)
-###     gim push all  master     # 推送到所有平台。
-###     gim push gitee master    # 推送到单个平台。
+###     gim add file
+###     gim push                 # 推送到origin (默认)
+###     gim push all master      # 推送到所有平台
+###     gim push gitee master    # 推送到单个平台
 ###     gim push github main     # 2020.10.1, github用main替代master
-###     gim push codeup master   # 其他支持的代码托管平台
-###     gim push coding dev      # gitee  -- 码云  codeup  -- 阿里
-###     gim push codehup beta    # coding -- 腾讯  codehub -- 华为
+###     gim push codeup master   # 目前支持的代码托管平台
+###     gim push coding dev      # gitee  -- 码云  codeup  -- 阿里 
+###     gim push codehup beta    # coding -- 腾讯  codehub -- 华为 github -- 微软
 
 #吉祥物
-Tux="🐧🐧🐧.."                 #Linux吉祥物
-Dove="🕊️"                      #和平鸽🕊️
-China="🐉"                     #中国龙🐲
-America="🦅"                   #美国鹰🦅
-Pretitle="推送当前代码分支到"
+TUX="🐧🐧🐧.."                 #Linux吉祥物
+DOVE="🕊️"                      #和平鸽🕊️
+CHINA="🐉"                     #中国龙🐲
+AMERICA="🦅"                   #美国鹰🦅
+PRETITLE="推送当前代码分支到"
 
 #帮助函数
 function help() {
@@ -44,7 +44,7 @@ function help() {
 
 #推送函数
 function pushTo() {
-    symbol="$China"
+    symbol="$CHINA"
     country="中国"
     platform="$1"
 
@@ -58,15 +58,15 @@ function pushTo() {
         title="华为Codehub"
     elif [[ "$platform" == "origin"  ]]; then
         country=""
-        symbol="$Dove"
+        symbol="$DOVE"
         title="Origin"
     elif [[ "$platform" == "github"  ]]; then
         country="美国"
-        symbol="$America"
+        symbol="$AMERICA"
         title="微软Github "
     fi
 
-    echo "$Tux $Pretitle$title $country$symbol"
+    echo "$TUX $PRETITLE$title $country$symbol"
     stt=`date +%s`
     git push $@
     edt=`date +%s`
