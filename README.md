@@ -5,13 +5,13 @@ Time consuming: basic
 ![updated](./updated.gif)
 
 Time consuming: Push
-
 ![update](./update.gif)
 
 ### release
-* please move to release page to download deb package.
+* please go to release page to download deb package.
 
 ### Update Log 
+* 2020-09-30 uploaded basic golang-script and deb package.
 * 2020-09-08 uploaded basic shell-script and deb package.
 
 ### Correction
